@@ -33,7 +33,7 @@ public class CryptoActivity extends AppCompatActivity {
     private static String nameData = null;
     private static JSONObject nameJSONObject = null;
     ArrayList<Crypto> currencies = new ArrayList<>();
-    private int numDisplay = 40;
+    private int numDisplay = 30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -26,7 +26,7 @@
 
     <ImageView
         android:id="@+id/favourite"
-        android:background="@drawable/ic_star"
+        android:background="@drawable/ic_star_selector"
         android:contentDescription="@string/title"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/title"

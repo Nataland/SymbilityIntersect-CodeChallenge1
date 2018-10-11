@@ -19,15 +19,14 @@ import challenge.nataland.symbilityintersect.model.Crypto;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
     private List<Crypto> dataList;
+    private int numFavourites;
 
     public CustomAdapter(List<Crypto> dataList) {
         this.dataList = dataList;
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
-
         public final View view;
-
         TextView txtTitle;
         TextView txtPrice;
         ImageView iconFavourite;
@@ -49,24 +48,26 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
     @Override
-    public void onBindViewHolder(CustomViewHolder holder, final int position) {
+    public void onBindViewHolder(final CustomViewHolder holder, final int position) {
+        holder.iconFavourite.setActivated(dataList.get(position).getFavourite());
         holder.txtTitle.setText(dataList.get(position).getName());
         NumberFormat format = NumberFormat.getCurrencyInstance();
         holder.txtPrice.setText(format.format(dataList.get(position).getPrice()));
-
-        // TODO: onClick Listener for the favourite button
-
-//        holder.cardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, ProductsListPageActivity.class);
-//
-//                intent.putExtra("LIST", (Serializable) dataList.get(position).getProducts());
-//                intent.putExtra("NAME", dataList.get(position).getTagName());
-//
-//                context.startActivity(intent);
-//            }
-//        });
+        holder.iconFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!dataList.get(position).getFavourite()) {
+                    numFavourites++;
+                    dataList.get(position).setFavourite(true);
+                    dataList.add(numFavourites - 1, dataList.remove(position));
+                } else {
+                    numFavourites--;
+                    dataList.get(position).setFavourite(false);
+                    dataList.add(numFavourites, dataList.remove(position));
+                }
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
