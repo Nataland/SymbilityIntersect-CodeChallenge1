@@ -1,6 +1,5 @@
-package challenge.nataland.symbilityintersect.adapters;
+package challenge.nataland.symbilityintersect.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 import challenge.nataland.symbilityintersect.R;
-import challenge.nataland.symbilityintersect.models.Crypto;
+import challenge.nataland.symbilityintersect.model.Crypto;
 
 /**
  * Created by natalie on 2018-10-07.
@@ -19,10 +19,8 @@ import challenge.nataland.symbilityintersect.models.Crypto;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
     private List<Crypto> dataList;
-    private Context context;
 
-    public CustomAdapter(Context context, List<Crypto> dataList) {
-        this.context = context;
+    public CustomAdapter(List<Crypto> dataList) {
         this.dataList = dataList;
     }
 
@@ -52,10 +50,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, final int position) {
-        holder.txtTitle.setText(dataList.get(position).getCoinName());
-        holder.txtTitle.setText(dataList.get(position).getPrice().toString());
-
-//        holder.txtTitle.setText(dataList.get(position).getTagName());
+        holder.txtTitle.setText(dataList.get(position).getName());
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+        holder.txtPrice.setText(format.format(dataList.get(position).getPrice()));
 
         // TODO: onClick Listener for the favourite button
 

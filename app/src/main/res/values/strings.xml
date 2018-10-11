@@ -3,4 +3,8 @@
     <string name="author_name">Yumeng Zhang \n(github.com/Nataland)</string>
     <string name="title">Crypto Charts</string>
     <string name="date">Oct 6, 2018</string>
+    <string name="loading">Loading…</string>
+    <string name="symbility">Symbility Intersect Code Challenge</string>
+    <string name="name_endpoint">https://www.cryptocompare.com/api/data/coinlist/</string>
+    <string name="price_endpoint">https://min-api.cryptocompare.com/data/price?fsym=%1$s&amp;tsyms=CAD</string>
 </resources>
